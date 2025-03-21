@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PiantBall Battles - Payment</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .payment-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            background-color: #fff;
+            border-radius: 10px;
+            /*box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);*/
+            overflow: hidden;
+        }
+        
+        .event-details {
+            padding: 30px;
+        }
+        
+        .payment-details {
+            padding: 30px;
+            background-color: #fff;
+            border-left: 1px solid #eee;
+        }
+        
+        .event-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .event-author {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 20px;
+        }
+        
+        .event-image {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            max-height: 300px;
+            object-fit: cover;
+        }
+        
+        .price-tag {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: 600;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin: 20px 0 10px;
+        }
+        
+        .section-content {
+            color: #555;
+            margin-bottom: 20px;
+        }
+        
+        .payment-method-icons {
+            display: flex;
+            justify-content: flex-start;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .payment-method-icons img {
+            height: 40px;
+            object-fit: contain;
+        }
+        
+        .payment-input {
+            margin-bottom: 20px;
+        }
+        
+        .payment-input label {
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+            color: #777;
+        }
+        
+        .divider::before, .divider::after {
+            content: "";
+            flex: 1;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .divider::before {
+            margin-right: 10px;
+        }
+        
+        .divider::after {
+            margin-left: 10px;
+        }
+        
+        .payment-summary {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .total-row {
+            font-weight: 600;
+            font-size: 18px;
+            border-top: 1px solid #ddd;
+            padding-top: 10px;
+            margin-top: 10px;
+        }
+        
+        .pay-button {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background-color: #0d6efd;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 600;
+            margin-top: 20px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .pay-button:hover {
+            background-color: #0b5ed7;
+        }
+        
+        .secure-note {
+            text-align: center;
+            color: #777;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 767.98px) {
+            .payment-container {
+                margin: 20px;
+                flex-direction: column;
+            }
+            
+            .payment-details {
+                border-left: none;
+                border-top: 1px solid #eee;
+            }
+            
+            .event-image-container {
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="payment-container row">
+            <a href="./home.html">home</a>
+            <!-- Left Column - Event Details -->
+            <div class="col-md-6 event-details">
+                <h1 class="event-title">PiantBall Battles</h1>
+                <p class="event-author">By Martin Kimani</p>
+                
+                <div class="position-relative event-image-container">
+                    <img src="./img/about-1.jpg" alt="PiantBall Battles" class="event-image">
+                    <div class="price-tag">Kshs 1,300</div>
+                </div>
+                
+                <h3 class="section-title">How will my money be used.</h3>
+                <p class="section-content">
+                    The money will be used to cater for entry fee of the area where the paintball
+                    battles will be held together with food and snacks provided by the event
+                    organizer.
+                </p>
+                
+                <h3 class="section-title">Concerns.</h3>
+                <p class="section-content">
+                    Incase of any delay or last minute cancel the money will be 100% refunded
+                    to payee.
+                </p>
+            </div>
+            
+            <!-- Right Column - Payment Details -->
+            <div class="col-md-6 payment-details">
+                <h2 class="mb-4">Payment Details</h2>
+                <p class="text-muted mb-4">Confirm your purchase by confirming the payment details</p>
+                
+                <div class="payment-method-icons">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/M-PESA_LOGO-01.svg/2560px-M-PESA_LOGO-01.svg.png" alt="M-Pesa">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Mastercard-logo.svg/1280px-Mastercard-logo.svg.png" alt="Mastercard">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/2560px-Visa_Inc._logo.svg.png" alt="Visa">
+                </div>
+                
+                <div class="payment-input">
+                    <label for="mpesa-number">Mpesa Phone Number</label>
+                    <input type="tel" class="form-control" id="mpesa-number" placeholder="072200000">
+                </div>
+                
+                <div class="divider">or</div>
+                
+                <div class="payment-input">
+                    <label for="till-number">Till Number</label>
+                    <input type="text" class="form-control" id="till-number" placeholder="949 5910">
+                </div>
+                
+                <div class="payment-summary">
+                    <div class="summary-row">
+                        <span>SubTotal</span>
+                        <span>Kshs 1,300</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Vat</span>
+                        <span>Kshs 100</span>
+                    </div>
+                    <div class="summary-row total-row">
+                        <span>Total</span>
+                        <span>Kshs 1,400</span>
+                    </div>
+                </div>
+                
+                <button class="pay-button">Pay Kshs 1,400</button>
+                
+                <div class="secure-note">
+                    <i class="fas fa-lock me-2"></i> Payment are secured & encrypted
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
