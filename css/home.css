@@ -1,20 +1,117 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    text-decoration: none;
-    list-style: none;
-    scroll-behavior: smooth;
-    /* font-family: 'Poppins', sans-serif; */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
+  scroll-behavior: smooth;
+  /* font-family: 'Poppins', sans-serif; */
 }
-
-
 
 /* Navbar */
-.navbar{
-    border-bottom: 1px solid black;
+.navbar {
+  border-bottom: 1px solid black;
 }
-.search-input{
-    border-radius: 100px;
+.search-input {
+  border-radius: 100px;
 }
+
+/* Custom styling for notification system */
+.notification-icon {
+  position: relative;
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding: 10px;
+}
+
+.notification-badge {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 10px;
+  height: 10px;
+  background-color: #dc3545;
+  border-radius: 50%;
+}
+
+.notification-dropdown {
+  position: absolute;
+  right: 0;
+  width: 350px;
+  z-index: 1000;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: none;
+}
+
+.notification-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f8f9fa;
+  padding: 15px;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.notification-container {
+  max-height: 350px;
+  overflow-y: auto;
+}
+
+.notification-item {
+  padding: 12px 15px;
+  border-bottom: 1px solid #f1f1f1;
+  /* transition: background-color 0.2s; */
+  background-color: #f8f9fa;
+}
+
+.notification-item:hover {
+  background-color: #f8f9fa;
+}
+
+.notification-item.unread {
+  background-color: #f0f7ff;
+}
+
+.notification-item.unread:hover {
+  background-color: #e7f3ff;
+}
+
+.notification-content {
+  margin-left: 10px;
+}
+
+.notification-time {
+  font-size: 0.75rem;
+  color: #6c757d;
+}
+
+.notification-message {
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+}
+
+.notification-footer {
+  text-align: center;
+  padding: 10px;
+  background-color: #f8f9fa;
+  border-top: 1px solid #dee2e6;
+}
+
+.type-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  /* border-radius: 50%; */
+  color: #ffc107;
+}
+
+/* Make sure dropdown appears on top of other elements */
+.position-relative {
+  position: relative;
+}
+
 /* Navbar End */

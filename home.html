@@ -61,9 +61,46 @@
                                 <li><a class="dropdown-item" href="#" id="for_partner">For Partner</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="landing.html">Logout</a>
+                        <!-- Notification -->
+                        <div class="d-flex align-items-center">
+                            <div class="position-relative me-3">
+                                <div class="notification-icon" id="notificationIcon">
+                                    <i class="bi bi-bell-fill"></i>
+                                    <div class="notification-badge" id="notificationBadge"></div>
+                                </div>
+                                
+                                <!-- Notification Dropdown -->
+                                <div class="notification-dropdown shadow" id="notificationDropdown">
+                                    <div class="notification-header">
+                                        <h6 class="mb-0">Notifications</h6>
+                                        <button type="button" class="btn btn-sm btn-link text-decoration-none" id="markAllReadBtn">Mark all as read</button>
+                                    </div>
+                                    <div class="notification-container" id="notificationContainer">
+                                        <!-- Notifications will be populated here -->
+                                    </div>
+                                    <div class="notification-footer">
+                                        <a href="#" class="text-decoration-none">View all notifications</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <li>
+                            <img src="./img/about-1.jpg" alt="Profile Image" class="rounded-circle img-thumbnail" style="width: 45px; height: 45px; object-fit: cover;">
+
                         </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Isaac
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#" id="">Profile</a></li>
+                                <li><a class="dropdown-item" href="#" id="">Logout</a></li>
+                            </ul>
+                        </li>
+                        <!-- <li class="nav-item">
+                            <a class="nav-link" href="landing.html">Logout</a>
+                        </li> -->
                     </ul>
                 </div>
             </div>
@@ -96,7 +133,7 @@
                                 <small class="m-0"><i class="bi bi-calendar text-warning"></i>3 days</small>
                                 <small class="m-0"><i class="bi bi-person-fill text-warning"></i>2 Person</small>
                             </div>
-                            <a class="h5 text-decoration-none" href="">Discover amazing places of the world with us</a>
+                            <a class="h5 text-decoration-none" href="./detailed.html">Discover amazing places of the world with us</a>
                             <div class="border-top mt-4 pt-4">
                                 <div class="d-flex justify-content-between">
                                     <h6 class="m-0"><i class="bi bi-star-fill mr-2 text-warning"></i>4.5
@@ -261,12 +298,183 @@
             });
         });
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
         integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
         crossorigin="anonymous"></script>
+        <!-- Bootstrap and required JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Notification script -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Sample notifications data (simulating database data)
+        const notifications = [
+            {
+                id: 1,
+                user_id: 123,
+                message: "Your booking for The Great Lakes 2 Days Package has been confirmed.",
+                type: "booking",
+                is_read: false,
+                created_at: "2025-03-20T14:30:00"
+            },
+            {
+                id: 2,
+                user_id: 123,
+                message: "New safari packages available for April 2025!",
+                type: "system",
+                is_read: true,
+                created_at: "2025-03-19T09:15:00"
+            },
+            {
+                id: 3,
+                user_id: 123,
+                message: "Someone left a review on your recent Nakuru trip.",
+                type: "review",
+                is_read: false,
+                created_at: "2025-03-18T16:45:00"
+            },
+            {
+                id: 4,
+                user_id: 123,
+                message: "Payment received for your upcoming safari tour.",
+                type: "booking",
+                is_read: false,
+                created_at: "2025-03-17T11:20:00"
+            },
+            {
+                id: 5,
+                user_id: 123,
+                message: "System maintenance scheduled for tomorrow at 2 AM EAT.",
+                type: "system",
+                is_read: true,
+                created_at: "2025-03-16T08:30:00"
+            }
+        ];
+        
+        // Elements
+        const notificationIcon = document.getElementById('notificationIcon');
+        const notificationBadge = document.getElementById('notificationBadge');
+        const notificationDropdown = document.getElementById('notificationDropdown');
+        const notificationContainer = document.getElementById('notificationContainer');
+        const markAllReadBtn = document.getElementById('markAllReadBtn');
+        
+        // Function to format date
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            const now = new Date();
+            const diffInHours = Math.floor((now - date) / (1000 * 60 * 60));
+            
+            if (diffInHours < 1) {
+                return 'Just now';
+            } else if (diffInHours < 24) {
+                return `${diffInHours} hour${diffInHours > 1 ? 's' : ''} ago`;
+            } else {
+                const days = Math.floor(diffInHours / 24);
+                if (days < 7) {
+                    return `${days} day${days > 1 ? 's' : ''} ago`;
+                } else {
+                    return date.toLocaleDateString();
+                }
+            }
+        }
+        
+        // Function to get icon based on notification type
+        function getIconForType(type) {
+            switch(type) {
+                case 'booking':
+                    return '<i class="bi bi-book-half"></i>';
+                case 'review':
+                    return '<i class="bi bi-star-fill"></i>';
+                case 'system':
+                default:
+                    return '<i class="bi bi-gear-fill"></i>';
+            }
+        }
+        
+        // Function to render notifications
+        function renderNotifications() {
+            notificationContainer.innerHTML = '';
+            
+            if (notifications.length === 0) {
+                notificationContainer.innerHTML = '<div class="p-3 text-center text-muted">No notifications</div>';
+                return;
+            }
+            
+            notifications.forEach(notification => {
+                const notificationItem = document.createElement('div');
+                notificationItem.className = `notification-item d-flex align-items-center ${notification.is_read ? '' : 'unread'}`;
+                notificationItem.setAttribute('data-id', notification.id);
+                
+                notificationItem.innerHTML = `
+                    <div class="type-icon type-${notification.type}">
+                        ${getIconForType(notification.type)}
+                    </div>
+                    <div class="notification-content flex-grow-1">
+                        <div class="notification-message">${notification.message}</div>
+                        <div class="notification-time">${formatDate(notification.created_at)}</div>
+                    </div>
+                    ${!notification.is_read ? '<div class="ms-2"><span class="badge rounded-circle bg-primary">&nbsp;</span></div>' : ''}
+                `;
+                
+                notificationItem.addEventListener('click', function() {
+                    if (!notification.is_read) {
+                        notification.is_read = true;
+                        renderNotifications();
+                        updateUnreadCount();
+                    }
+                });
+                
+                notificationContainer.appendChild(notificationItem);
+            });
+        }
+        
+        // Function to count unread notifications
+        function updateUnreadCount() {
+            const unreadCount = notifications.filter(n => !n.is_read).length;
+            
+            if (unreadCount > 0) {
+                notificationBadge.style.display = 'block';
+            } else {
+                notificationBadge.style.display = 'none';
+            }
+        }
+        
+        // Toggle notification dropdown
+        notificationIcon.addEventListener('click', function(e) {
+            e.stopPropagation();
+            if (notificationDropdown.style.display === 'block') {
+                notificationDropdown.style.display = 'none';
+            } else {
+                renderNotifications();
+                notificationDropdown.style.display = 'block';
+            }
+        });
+        
+        // Mark all as read
+        markAllReadBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            notifications.forEach(notification => {
+                notification.is_read = true;
+            });
+            renderNotifications();
+            updateUnreadCount();
+        });
+        
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            if (notificationDropdown.style.display === 'block' && !notificationDropdown.contains(e.target) && e.target !== notificationIcon) {
+                notificationDropdown.style.display = 'none';
+            }
+        });
+        
+        // Initial render
+        updateUnreadCount();
+    });
+</script>
 </body>
 
 </html>
